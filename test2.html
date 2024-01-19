@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Modal Dialog Example</title>
+    <style>
+        /* Styles for overlay */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 50%;
+            background: whitesmoke(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Styles for modal */
+        #modal {
+            display: none;
+            background: rgb(218, 61, 61);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .postimage {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="openDialog()">Click Me</button>
+
+    <!-- Overlay and Modal -->
+    <div id="overlay" onclick="closeDialog()"></div>
+    <div id="modal">
+        <div class="postimage">
+            <h2>Custom Modal Dialog</h2>
+            <p>This is a custom modal dialog. You can customize its content and style.</p>
+            <button onclick="closeDialog()">Close</button>
+        </div>
+    </div>
+
+    </div>
+
+    <script>
+        function openDialog() {
+            // Display overlay and modal
+            document.getElementById('overlay').style.display = 'flex';
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeDialog() {
+            // Hide overlay and modal
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>

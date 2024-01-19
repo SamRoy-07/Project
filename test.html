@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect Page</title>
+  <style>
+    /* Your CSS styles can go here */
+  </style>
+  <script>
+    // JavaScript code for redirecting after a certain number of seconds
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set the number of seconds before redirecting
+      var secondsBeforeRedirect = 10; // Change this to the desired number of seconds
+
+      // Set the redirect function
+      function redirect() {
+        window.location.href = 'signup.html';
+      }
+
+      // Set a timeout to call the redirect function after the specified time
+      setTimeout(redirect, secondsBeforeRedirect * 1000);
+    });
+  </script>
+</head>
+<body>
+
+  <h1>Your Webpage Content</h1>
+
+</body>
+</html>
