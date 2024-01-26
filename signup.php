@@ -10,17 +10,16 @@ mysqli_query($con,$sql);
 ?>
 <head>
 <script>
-    // JavaScript code for redirecting after a certain number of seconds
+   
     document.addEventListener('DOMContentLoaded', function() {
-      // Set the number of seconds before redirecting
-      var secondsBeforeRedirect = 1; // Change this to the desired number of seconds
-
-      // Set the redirect function
+     
+      var secondsBeforeRedirect = 1; 
+      
       function redirect() {
         window.location.href = 'login.html';
       }
 
-      // Set a timeout to call the redirect function after the specified time
+      
       setTimeout(redirect, secondsBeforeRedirect * 1000);
     });
   </script>

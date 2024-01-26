@@ -1,9 +1,9 @@
-<?php 
+<?php
+
 session_start();
+
 ?>
-
 <html>
-
 <head>
   <style>
     @keyframes stageBackground {
@@ -860,181 +860,165 @@ session_start();
 
    
   </style>
-  </script>
-</head>
-
 <body>
+    <?php
+    $nemail=$_POST['nemail'];
+    $npassword=$_POST['npassword'];
+
+    
+
+    $oldemail=$_SESSION['email'];
 
 
+    
 
 
+    $con=mysqli_connect('localhost','root','') or die('not connected');
+    mysqli_select_db($con,'project') or die('not selected');
 
-<?php
+    $query="UPDATE `sample`  SET `Email`='$nemail',`Password`='$npassword' WHERE Email= '$oldemail' ";
+    
+    $result=mysqli_query($con,$query);
 
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-
-
-$con = mysqli_connect('localhost', 'root', '') or die('not connected');
-mysqli_select_db($con, 'project') or die('not selected');
-
-
-
-$query = "select * from sample where Email='$email' and Password='$password'";
-$result = mysqli_query($con, $query);
-$count = mysqli_num_rows($result);
-
-if ($count > 0) {
-  $_SESSION['email']=$email;
-  
-
-
+    if ($result) {
+        
+        
     echo "<div class='scene'>
-       <div class='forest'>
-         <div class='tree tree1'>
-           <div class='branch branch-top'></div>
-           <div class='branch branch-middle'></div>
-         </div>
-     
-         <div class='tree tree2'>
-           <div class='branch branch-top'></div>
-           <div class='branch branch-middle'></div>
-           <div class='branch branch-bottom'></div>
-         </div>
-     
-         <div class='tree tree3'>
-           <div class='branch branch-top'></div>
-           <div class='branch branch-middle'></div>
-           <div class='branch branch-bottom'></div>
-         </div>
-     
-         <div class='tree tree4'>
-           <div class='branch branch-top'></div>
-           <div class='branch branch-middle'></div>
-           <div class='branch branch-bottom'></div>
-         </div>
-     
-         <div class='tree tree5'>
-           <div class='branch branch-top'></div>
-           <div class='branch branch-middle'></div>
-           <div class='branch branch-bottom'></div>
-         </div>
-     
-         <div class='tree tree6'>
-           <div class='branch branch-top'></div>
-           <div class='branch branch-middle'></div>
-           <div class='branch branch-bottom'></div>
-         </div>
-     
-         <div class='tree tree7'>
-           <div class='branch branch-top'></div>
-           <div class='branch branch-middle'></div>
-           <div class='branch branch-bottom'></div>
-         </div>
-       </div>
-       
-       <div class='tent'>
-           <div class='roof'></div>
-           <div class='roof-border-left'>
-             <div class='roof-border roof-border1'></div>
-             <div class='roof-border roof-border2'></div>
-             <div class='roof-border roof-border3'></div>
-           </div>
-           <div class='entrance'>
-             <div class='door left-door'>
-               <div class='left-door-inner'></div>
-             </div>
-             <div class='door right-door'>
-               <div class='right-door-inner'></div>
-             </div>
-           </div>
-         </div>
-     
-       <div class='floor'>
-           <div class='ground ground1'></div>
-           <div class='ground ground2'></div>
-         </div>
-       
-       <div class='fireplace'>
-         <div class='support'></div>
-         <div class='support'></div>
-         <div class='bar'></div>
-         <div class='hanger'></div>
-         <div class='smoke'></div>
-         <div class='pan'></div>
-         <div class='fire'>
-           <div class='line line1'>
-             <div class='particle particle1'></div>
-             <div class='particle particle2'></div>
-             <div class='particle particle3'></div>
-             <div class='particle particle4'></div>
-           </div>
-           <div class='line line2'>
-             <div class='particle particle1'></div>
-             <div class='particle particle2'></div>
-             <div class='particle particle3'></div>
-             <div class='particle particle4'></div>
-           </div>
-           <div class='line line3'>
-             <div class='particle particle1'></div>
-             <div class='particle particle2'></div>
-             <div class='particle particle3'></div>
-             <div class='particle particle4'></div>
-           </div>
-         </div>
-       </div>
-       
-       <div class='time-wrapper'>
-         <div class='time'>
-           <div class='day'></div>
-           <div class='night'>
-             <div class='moon'></div>
-             <div class='star star1 star-big'></div>
-             <div class='star star2 star-big'></div>
-             <div class='star star3 star-big'></div>
-             <div class='star star4'></div>
-             <div class='star star5'></div>
-             <div class='star star6'></div>
-             <div class='star star7'></div>
-           </div>
-         </div>
-       </div>
-     </div>";
-
-     echo '<div class="motto">
-     <div class="mottosize">
-     Unite Strong, Unleash Brilliance, Triumph
-     </div>
-     </div>';
-
-    echo "<script>
-     document.addEventListener('DOMContentLoaded', function() {
-       var secondsBeforeRedirect = 2;
-       function redirect() {
-         window.location.href = 'first.php';
-       }
-       setTimeout(redirect, secondsBeforeRedirect * 1000);
-     });
-   </script>";
-} else {
-    // User authentication failed
-    echo '<div class="motto">
-        <div class="mottosize">
-        Login was not successful
+    <div class='forest'>
+      <div class='tree tree1'>
+        <div class='branch branch-top'></div>
+        <div class='branch branch-middle'></div>
+      </div>
+  
+      <div class='tree tree2'>
+        <div class='branch branch-top'></div>
+        <div class='branch branch-middle'></div>
+        <div class='branch branch-bottom'></div>
+      </div>
+  
+      <div class='tree tree3'>
+        <div class='branch branch-top'></div>
+        <div class='branch branch-middle'></div>
+        <div class='branch branch-bottom'></div>
+      </div>
+  
+      <div class='tree tree4'>
+        <div class='branch branch-top'></div>
+        <div class='branch branch-middle'></div>
+        <div class='branch branch-bottom'></div>
+      </div>
+  
+      <div class='tree tree5'>
+        <div class='branch branch-top'></div>
+        <div class='branch branch-middle'></div>
+        <div class='branch branch-bottom'></div>
+      </div>
+  
+      <div class='tree tree6'>
+        <div class='branch branch-top'></div>
+        <div class='branch branch-middle'></div>
+        <div class='branch branch-bottom'></div>
+      </div>
+  
+      <div class='tree tree7'>
+        <div class='branch branch-top'></div>
+        <div class='branch branch-middle'></div>
+        <div class='branch branch-bottom'></div>
+      </div>
+    </div>
+    
+    <div class='tent'>
+        <div class='roof'></div>
+        <div class='roof-border-left'>
+          <div class='roof-border roof-border1'></div>
+          <div class='roof-border roof-border2'></div>
+          <div class='roof-border roof-border3'></div>
         </div>
-        </div>';
-    echo "<script>
-     document.addEventListener('DOMContentLoaded', function() {
-       var secondsBeforeRedirect = 5;
-       function redirect() {
-         window.location.href = 'login.html';
-       }
-       setTimeout(redirect, secondsBeforeRedirect * 1000);
-     });
-   </script>";
-}
-?>
-</body>
-</html>
+        <div class='entrance'>
+          <div class='door left-door'>
+            <div class='left-door-inner'></div>
+          </div>
+          <div class='door right-door'>
+            <div class='right-door-inner'></div>
+          </div>
+        </div>
+      </div>
+  
+    <div class='floor'>
+        <div class='ground ground1'></div>
+        <div class='ground ground2'></div>
+      </div>
+    
+    <div class='fireplace'>
+      <div class='support'></div>
+      <div class='support'></div>
+      <div class='bar'></div>
+      <div class='hanger'></div>
+      <div class='smoke'></div>
+      <div class='pan'></div>
+      <div class='fire'>
+        <div class='line line1'>
+          <div class='particle particle1'></div>
+          <div class='particle particle2'></div>
+          <div class='particle particle3'></div>
+          <div class='particle particle4'></div>
+        </div>
+        <div class='line line2'>
+          <div class='particle particle1'></div>
+          <div class='particle particle2'></div>
+          <div class='particle particle3'></div>
+          <div class='particle particle4'></div>
+        </div>
+        <div class='line line3'>
+          <div class='particle particle1'></div>
+          <div class='particle particle2'></div>
+          <div class='particle particle3'></div>
+          <div class='particle particle4'></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class='time-wrapper'>
+      <div class='time'>
+        <div class='day'></div>
+        <div class='night'>
+          <div class='moon'></div>
+          <div class='star star1 star-big'></div>
+          <div class='star star2 star-big'></div>
+          <div class='star star3 star-big'></div>
+          <div class='star star4'></div>
+          <div class='star star5'></div>
+          <div class='star star6'></div>
+          <div class='star star7'></div>
+        </div>
+      </div>
+    </div>
+  </div>";
 
+  echo '<div class="motto">
+  <div class="mottosize">
+  Unite Strong, Unleash Brilliance, Triumph
+  </div>
+  </div>';
+
+ echo "<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var secondsBeforeRedirect = 4;
+    function redirect() {
+      window.location.href = 'first.php';
+    }
+    setTimeout(redirect, secondsBeforeRedirect * 1000);
+  });
+</script>";
+    } else {
+        
+        echo "Update failed!";
+    }
+
+
+
+
+    ?>
+</body>
+
+</html>
