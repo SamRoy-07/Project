@@ -862,9 +862,7 @@ session_start();
   </style>
 <body>
     <?php
-    $nemail=$_POST['nemail'];
-    $npassword=$_POST['npassword'];
-
+    
     
 
     $oldemail=$_SESSION['email'];

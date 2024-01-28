@@ -40,7 +40,7 @@ if (isset($_SESSION["email"]) ) {
                 margin-top: 80px;
                 position: absolute;
                 left: -93px;
-                - transition: 0.3s;
+                transition: 0.4s;
                 padding: 15px;
                 width: 100px;
                 text-decoration: none;
