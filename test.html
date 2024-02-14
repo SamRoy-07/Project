@@ -29,3 +29,20 @@
 
 </body>
 </html>
+
+
+
+<html>
+
+// Update the second table with the new data
+$update_query = "UPDATE profile SET `desc`='$desc', `biodata`='$bio', `username`='$user',`quotes`='$quotes' WHERE userid='$userid'";
+mysqli_query($con, $update_query);
+
+// Redirect to a success page or display a success message
+header("location: profileupdate.php");
+exit();
+} else {
+// If the user is not logged in, redirect to the login page
+header("location: login.html");
+exit();
+}

@@ -39,7 +39,7 @@ if (isset($_SESSION["email"]) ) {
             #leftnav a {
                 margin-top: 80px;
                 position: absolute;
-                left: -93px;
+                left: -115px;
                 transition: 0.4s;
                 padding: 15px;
                 width: 100px;
@@ -49,10 +49,11 @@ if (isset($_SESSION["email"]) ) {
                 border-radius: 10px;
                 text-align: center;
                 justify-content: center;
+                background-color: #4B0082;
             }
 
             #leftnav a:hover {
-                left: 10;
+                left: 0;
                 background-color: #4B0082;
             }
 
@@ -172,7 +173,7 @@ if (isset($_SESSION["email"]) ) {
         </style>
         <script>
             function profile() {
-                window.location.href = 'profilef.php'
+                window.location.href = 'profileupdate.php'
             }
 
         </script>
@@ -226,9 +227,7 @@ if (isset($_SESSION["email"]) ) {
                 <li>
                     <p>Posts</p>
                 </li>
-                <li>
-                    <p>Video</p>
-                </li>
+                
             </ul>
         </div>
 

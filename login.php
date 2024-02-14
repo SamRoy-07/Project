@@ -1018,7 +1018,7 @@ if ($count > 0) {
      });
    </script>";
 } else {
-    // User authentication failed
+    
     echo '<div class="motto">
         <div class="mottosize">
         Login was not successful
