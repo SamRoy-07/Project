@@ -170,7 +170,7 @@ if (isset($_SESSION["email"]) ) {
 <body>
 
 
-    <form class="form" method="POST" action="report.php">
+    <form class="form" method="POST" action="reportl.php">
         <div class="image-container">
           <a href="logo.jpg" download="pridelogo">
             <img src="logo.jpg" alt="Description of the image" widht="100" height="auto"> </a>
