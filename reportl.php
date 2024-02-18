@@ -20,6 +20,19 @@
       background-color: lightblue;
     }
     </style>
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var secondsBeforeRedirect = 3; 
+
+      function redirect() {
+        window.location.href = 'first.php'; 
+      }
+
+      setTimeout(redirect, secondsBeforeRedirect * 1000); 
+    });
+  </script>
+    </head>
     <body>
 
 
@@ -43,7 +56,7 @@ if (isset($_SESSION["email"])) {
     $userid = $row['userid'];
 
 
-    $sql = "UPDATE `report` SET `reportname`='$reportname',`reason`='$reason' WHERE userid='$userid'";
+    $sql = "INSERT INTO `report`(`reportname`, `reason`, `userid`) VALUES ('$reportname','$reason','$userid')";
     mysqli_query($con, $sql) or die('Query not executed');
     echo"<div class='report'>";
     echo"Your REPORT has been updated";
@@ -51,6 +64,9 @@ if (isset($_SESSION["email"])) {
 
     mysqli_close($con);
 
+
+
+    
 ?>
 <?php
 

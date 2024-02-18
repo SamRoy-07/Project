@@ -1,6 +1,14 @@
 <html>
     <head>
+      <script>
+           
+        function handleCustomButtonClick() {
+        
+            window.location.href = 'login.html';
+        }
+    </script>
         <style>
+          
         
         .form {
             display: flex;
@@ -147,6 +155,21 @@
     body{
       background-color:#dddbdb;
     }
+    .span {
+    font-size: 14px;
+    margin-left: 5px;
+    color: #2d79f3;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .p {
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
 
         
 
@@ -183,6 +206,7 @@
          
         </div>
         <button class="button-submit">SIGN UP</button>
+        <p class="p">Account exists <button type="button" id="customButton" onclick="handleCustomButtonClick()"><span class="span">Login</span></button></p>
         </form>
     
 </body>

@@ -1,14 +1,34 @@
 <html>
     <head>
+      <style>
+      .profile{
+        display: flex;
+        position:absolute;
+        background-color: #e64762;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        width: 25%;
+        height: 10%;
+        top: 40%;
+        right: 40%;
+        border-radius: 20px;
+        box-shadow: 4px 5px 2px;
+
+    }
+    body{
+      background-color: lightblue;
+    }
+        </style>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var secondsBeforeRedirect = 3; // Adjust the time before redirection as needed
+      var secondsBeforeRedirect = 3; 
 
       function redirect() {
-        window.location.href = 'profileupdate.php'; // Redirect to login page after registration
+        window.location.href = 'profile.php'; 
       }
 
-      setTimeout(redirect, secondsBeforeRedirect * 1000); // Set timeout for redirection
+      setTimeout(redirect, secondsBeforeRedirect * 1000); 
     });
   </script>
 </head>
@@ -39,8 +59,11 @@ if (isset($_SESSION["email"])) {
 
 $sql="UPDATE `profile` SET `Description`='$desc',`Quotes`='$quotes',`Biodata`='$bio',`Username`='$user' WHERE userid=$userid";
 $res=mysqli_query($con,$sql);
+echo"<div class='profile'>";
+echo"Profile has been updated";
+echo"</div>";
 mysqli_close($con);
-echo"profile has been updated successfully";
+
 
     
 }else{

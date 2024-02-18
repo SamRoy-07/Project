@@ -29,6 +29,8 @@
 $con = mysqli_connect('localhost', 'root', '') or die('not connected');
 mysqli_select_db($con, 'project') or die('not selected');
 $email = $_POST['email'];
+
+
 $npassword = $_POST['npassword'];
 $cpassword = $_POST['cpassword'];
 $sql2="select * from sample where Email='$email'";

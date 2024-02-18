@@ -76,11 +76,12 @@
       line-height: 1.5;
 
     }
+    
 
     </style>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var secondsBeforeRedirect = 200; 
+      var secondsBeforeRedirect = 3; 
 
       function redirect() {
         window.location.href = 'login.html'; 
@@ -125,14 +126,28 @@
       
   } else {
       // Insert new user data into the database
-      $sql = "INSERT INTO `sample`(`Email`, `Password`) VALUES ('$email', '$password')";
+
+      $rand=(rand(10,1000));
+      $sql = "INSERT INTO `sample`(`Email`, `Password`,`uniqueid`) VALUES ('$email', '$password','$rand')";
       mysqli_query($con, $sql) or die('Could not insert data into database');
       $userid = mysqli_insert_id($con);
+
+      $query = "SELECT userid FROM sample WHERE email='$email'";
+      $result = mysqli_query($con, $query);
+      $row = mysqli_fetch_assoc($result);
+      $userid = $row['userid'];
+
+      $query = "SELECT uniqueid FROM sample WHERE email='$email'";
+      $res = mysqli_query($con, $query);
+      $row = mysqli_fetch_assoc($res);
+      $uniqueid = $row['uniqueid'];
+
+      
      
   
   
   
-  $sql2="INSERT INTO `profile`(`userid`) VALUES ('$userid')";
+  $sql2="INSERT INTO `profile`( `userid`, `uniqueid`) VALUES ('$userid','$uniqueid');";
   mysqli_query($con, $sql2) or die('Could not insert data into database');
 
   $sql3="INSERT INTO `report`(`userid`) VALUES ('$userid')";

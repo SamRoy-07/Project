@@ -4,7 +4,7 @@
 
 session_start();
 
-if (isset($_SESSION["email"]) ) {
+if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
 
     ?>
 
@@ -106,7 +106,7 @@ if (isset($_SESSION["email"]) ) {
                 flex-direction: column;
                 height: auto;
                 width: 50%;
-                position: fixed;
+                position: absolute;
                 top: 22%;
                 right: 50%;
                 transform: translate(50%, -50%);
@@ -170,10 +170,18 @@ if (isset($_SESSION["email"]) ) {
                 line-height: 1.5;
 
             }
+            .reportuser{
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                height: 10%;
+                width: 5%;
+                right:1.5%
+            }
         </style>
         <script>
             function profile() {
-                window.location.href = 'profileupdate.php'
+                window.location.href = 'profile.php'
             }
 
         </script>
@@ -210,7 +218,7 @@ if (isset($_SESSION["email"]) ) {
 
         <div class="pride">
             Pride
-            
+
         </div>
 
         <div id="rightnav" class="rightnav">
@@ -222,36 +230,43 @@ if (isset($_SESSION["email"]) ) {
                     </a>
                 </li>
                 <li>
-                    <p>Chat</p>
+                    <a href="users.php">
+                        <p>Chat</p>
+                    </a>
                 </li>
                 <li>
-                    <p>Posts</p>
+                    <a href="Postimagef.php">
+                        <p>Posts</p>
+                    </a>
                 </li>
-                
+
             </ul>
         </div>
 
 
         <div class="post">
+            <a href="display.php">
 
-            Hello
+
+                Hello
+            </a>
 
         </div>
 
+        <a href="reportf.php">
+            <img src="reportuser.png" class="reportuser"></a>
 
 
+        
 
-
-
-
-
+        
 
     </body>
 
     </html>
     <?php
 } else {
-   
+
     header("location: login.html");
 }
 ?>
