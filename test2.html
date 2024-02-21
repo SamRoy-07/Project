@@ -69,3 +69,46 @@
 </body>
 
 </html>
+
+
+
+
+
+while($row=mysqli_fetch_assoc($sql)){
+    $output.='<a href="#">
+    <div class="content">
+    <div class="details">
+    <span>'.$row['Email'];
+}
+
+
+
+<?php
+    session_start();
+    include_once "config.php";
+    if(isset($_SESSION['uniqueid']) && ($_SESSION['email']))
+    $outgoing_id = $_SESSION['uniqueid'];
+    $sql = "SELECT * FROM `profile` WHERE NOT uniqueid = '$outgoing_id' ORDER BY userid DESC";
+    $query = mysqli_query($conn, $sql);
+    $output = '';
+    if(mysqli_num_rows($query) == 0){
+        $output .= "No users are available to chat";
+    }elseif(mysqli_num_rows($query) > 0){
+        while($rows=mysqli_fetch_assoc($query)){
+            $output='<a href="#">
+            <div class="content">
+            
+            <div class="details">
+            <span>'. $row['uniqueid'].'</span>
+            <p>This is message</p>
+            </div>
+            </div>
+            <div class="status-dot"><i class="fas fa-circle"></i></div>
+            </a>';
+        }
+        
+      
+        include_once "data.php";
+    }
+    echo $output;
+?>

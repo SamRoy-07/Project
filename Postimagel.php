@@ -10,13 +10,10 @@ $con = mysqli_connect('localhost', 'root', '') or die('not connected');
 mysqli_select_db($con, 'project') or die('not selected');
 if(isset($_POST["submit"])){
   $Description = $_POST["Description"];
-
   $query = "SELECT userid FROM sample WHERE email='$email'";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_assoc($result);
     $userid = $row['userid'];
-
-    
   if($_FILES["image"]["error"] == 4){
     echo
     "<script> alert('Image Does Not Exist'); </script>"
@@ -51,7 +48,7 @@ if(isset($_POST["submit"])){
       $newImageName .= '.' . $imageExtension;
 
       move_uploaded_file($tmpName, 'img/' . $newImageName);
-      $query = "INSERT INTO `tb_upload`(`userid`, `Description`, `image`) VALUES ('$userid','$Description','$newImageName')";
+      $query = "INSERT INTO `post`(`userid`, `Description`, `image`) VALUES ('$userid','$Description','$newImageName')";
       mysqli_query($con, $query);
       echo
       "
