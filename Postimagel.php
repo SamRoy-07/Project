@@ -54,7 +54,7 @@ if(isset($_POST["submit"])){
       "
       <script>
         alert('Successfully Added');
-        document.location.href = 'first.php';
+        document.location.href = 'main.php';
       </script>
       ";
     }

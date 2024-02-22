@@ -1020,7 +1020,7 @@ if ($count > 0) {
      document.addEventListener('DOMContentLoaded', function() {
        var secondsBeforeRedirect = 2;
        function redirect() {
-         window.location.href = 'first.php';
+         window.location.href = 'main.php';
        }
        setTimeout(redirect, secondsBeforeRedirect * 1000);
      });
