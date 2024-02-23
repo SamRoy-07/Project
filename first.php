@@ -1,12 +1,3 @@
-<?php
-
-
-
-session_start();
-
-if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
-
-    ?>
 
     <html>
 
@@ -264,9 +255,4 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
     </body>
 
     </html>
-    <?php
-} else {
-
-    header("location: login.html");
-}
-?>
+   

@@ -18,7 +18,7 @@ mysqli_select_db($con, 'project') or die('not selected');
       </tr>
       <?php
       $i = 1;
-      $rows = mysqli_query($con, "SELECT * FROM tb_upload ORDER BY userid DESC")
+      $rows = mysqli_query($con, "SELECT * FROM post ORDER BY userid DESC")
       ?>
 
       <?php foreach ($rows as $row) : ?>

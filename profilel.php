@@ -1005,7 +1005,7 @@ session_start();
   document.addEventListener('DOMContentLoaded', function() {
     var secondsBeforeRedirect = 4;
     function redirect() {
-      window.location.href = 'first.php';
+      window.location.href = 'main.php';
     }
     setTimeout(redirect, secondsBeforeRedirect * 1000);
   });
