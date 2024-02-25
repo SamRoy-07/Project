@@ -1,7 +1,4 @@
 <?php
-
-
-
 session_start();
 
 if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
@@ -283,7 +280,7 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
             }
 
             .leftnav li a:hover img {
-                transform: scale(1.2);
+                transform: scale(1.4);
                 /* Increase the size of the image on hover */
             }
 
@@ -407,10 +404,13 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="mainpng\contact.png" class="imagecontact">
+                            <a href="../project/contact/contactf.php">
+                                <img src="mainpng/contact.png" class="imagecontact">
                                 <p>Contact</p>
                             </a>
+
+
+
                         </li>
                         <li>
                             <a href="#">

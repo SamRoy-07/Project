@@ -155,19 +155,41 @@ if (isset($_SESSION["email"]) ) {
     }
 
     body{
-      background-color:#dddbdb;
+      background-color: #f7f7f7;
     }
+    .imagehome {
+                height: 30px;
+                width: auto;
+                margin-right: 0px;
+                display: flex;
+                position: absolute;
+                margin-top: 3%;
+                margin-left: 3%;
+                background-color: transparent;
+            }
+
+            .imagehome:hover {
+
+                height: 6%;
+                border-radius: 10px;
+            }
+
+            .imagehome a:hover img {
+                transform: scale(1.4);
+            }
+    </style>
+
+  </head>
+
+  <body>
+    <a href="main.php"><img src="mainpng\home.png" class="imagehome"></a>
 
         
 
 
   
 
-  </style>
-     
-    </head>
-
-<body>
+  
 
 
     <form class="form" method="POST" action="reportl.php">

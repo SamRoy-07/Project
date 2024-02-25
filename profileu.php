@@ -1,24 +1,25 @@
 <html>
     <head>
       <style>
-      .profile{
-        display: flex;
-        position:absolute;
-        background-color: #e64762;
-        justify-content: center;
-        text-align: center;
-        align-items: center;
-        width: 25%;
-        height: 10%;
-        top: 40%;
-        right: 40%;
-        border-radius: 20px;
-        box-shadow: 4px 5px 2px;
+       .profile{
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            margin-top: 23%;
+            height: 10%;
+            width: 18%;
+            margin-left: 40%;
+            border-radius: 10px;
+            color: white;
+            background-color: black;
+            box-shadow: 10px 10px #edd3d3;
 
-    }
-    body{
-      background-color: lightblue;
-    }
+        }
+        body{
+            background-color: #f7f7f7;
+        }
         </style>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -34,12 +35,10 @@
 </head>
     
         
-        
 <?php
 session_start();
 
 if (isset($_SESSION["email"])) {
-    
     $email = $_SESSION["email"];
 
     // Retrieve userid from login table based on email
@@ -50,23 +49,39 @@ if (isset($_SESSION["email"])) {
     $row = mysqli_fetch_assoc($result);
     $userid = $row['userid'];
 
-    // Get data from the form
-    $desc = $_POST['desc'];
-    $bio = $_POST['bio'];
-    $user=$_POST['username'];
-    $quotes=$_POST['quotes'];
+    // Initialize an array to store the fields to be updated
+    $fieldsToUpdate = array();
 
-
-$sql="UPDATE `profile` SET `Description`='$desc',`Quotes`='$quotes',`Biodata`='$bio',`Username`='$user' WHERE userid=$userid";
-$res=mysqli_query($con,$sql);
-echo"<div class='profile'>";
-echo"Profile has been updated";
-echo"</div>";
-mysqli_close($con);
-
+    // Get data from the form and construct the SQL query
+    if (!empty($_POST['desc'])) {
+        $fieldsToUpdate[] = "Description='" . mysqli_real_escape_string($con, $_POST['desc']) . "'";
+    }
+    if (!empty($_POST['bio'])) {
+        $fieldsToUpdate[] = "Biodata='" . mysqli_real_escape_string($con, $_POST['bio']) . "'";
+    }
+    if (!empty($_POST['username'])) {
+        $fieldsToUpdate[] = "Username='" . mysqli_real_escape_string($con, $_POST['username']) . "'";
+    }
+    if (!empty($_POST['quotes'])) {
+        $fieldsToUpdate[] = "Quotes='" . mysqli_real_escape_string($con, $_POST['quotes']) . "'";
+    }
 
     
-}else{
-      header("location:login.html");
+    if (!empty($fieldsToUpdate)) {
+        $updateFields = implode(', ', $fieldsToUpdate);
+        $sql = "UPDATE `profile` SET $updateFields WHERE userid=$userid";
+        $res = mysqli_query($con, $sql);
+        echo "<div class='profile'>";
+        echo "Profile has been updated";
+        echo "</div>";
+    } else {
+        echo "<div class='profile'>";
+        echo "No fields to update";
+        echo "</div>";
+    }
+
+    mysqli_close($con);
+} else {
+    header("location:login.html");
 }
 ?>

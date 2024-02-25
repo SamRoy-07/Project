@@ -6,9 +6,9 @@ if (isset($_SESSION['email'])) {
 
     <head>
         <style>
-            body {
-                background-color: lightblue;
-            }
+           body{
+        background-color: #f7f7f7;
+      }
 
             .container {
                 display: flex;

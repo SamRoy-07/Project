@@ -1,45 +1,50 @@
 <html>
-    <head>
-        <style>
-            .report{
-        display: flex;
-        position:absolute;
-        background-color: #e64762;
-        justify-content: center;
-        text-align: center;
-        align-items: center;
-        width: 25%;
-        height: 10%;
-        top: 40%;
-        right: 40%;
-        border-radius: 20px;
-        box-shadow: 4px 5px 2px;
+
+<head>
+  <style>
+    .report {
+
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      justify-content: center;
+      align-items: center;
+      margin-top: 23%;
+      height: 10%;
+      width: 18%;
+      margin-left: 40%;
+      border-radius: 10px;
+      color: white;
+      background-color: black;
+      box-shadow: 10px 10px #edd3d3;
 
     }
-    body{
-      background-color: lightblue;
+
+    body {
+      background-color: #f7f7f7;
     }
-    </style>
-    </style>
-    <script>
+  </style>
+  </style>
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var secondsBeforeRedirect = 3; 
+      var secondsBeforeRedirect = 3;
 
       function redirect() {
-        window.location.href = 'first.php'; 
+        window.location.href = 'main.php';
       }
 
-      setTimeout(redirect, secondsBeforeRedirect * 1000); 
+      setTimeout(redirect, secondsBeforeRedirect * 1000);
     });
   </script>
-    </head>
-    <body>
+</head>
+
+<body>
 
 
-<?php
-session_start();
+  <?php
+  session_start();
 
-if (isset($_SESSION["email"])) {
+  if (isset($_SESSION["email"])) {
     $email = $_SESSION["email"];
 
 
@@ -58,22 +63,23 @@ if (isset($_SESSION["email"])) {
 
     $sql = "INSERT INTO `report`(`reportname`, `reason`, `userid`) VALUES ('$reportname','$reason','$userid')";
     mysqli_query($con, $sql) or die('Query not executed');
-    echo"<div class='report'>";
-    echo"Your REPORT has been updated";
-    echo"</div>";
+    echo "<div class='report'>";
+    echo "Your REPORT has been updated";
+    echo "</div>";
 
     mysqli_close($con);
 
 
 
-    
-?>
-<?php
+
+    ?>
+    <?php
 
 
-} else {
+  } else {
     header("location:login.html");
-}
-?>
+  }
+  ?>
 </body>
+
 </html>

@@ -1005,14 +1005,20 @@ session_start();
   document.addEventListener('DOMContentLoaded', function() {
     var secondsBeforeRedirect = 4;
     function redirect() {
-      window.location.href = 'main.php';
+      window.location.href ='login.html';
     }
     setTimeout(redirect, secondsBeforeRedirect * 1000);
   });
 </script>";
     } else {
         
-        echo "Update failed!";
+      echo '<div class="motto">
+      <div class="mottosize">
+      Update failed
+      </div>
+      </div>';
+      
+        
     }
 
 

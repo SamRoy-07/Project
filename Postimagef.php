@@ -12,7 +12,7 @@ if (isset($_SESSION['email'])) {
 
     <style>
       body{
-        background-color: #ffe4e1
+        background-color: #f7f7f7;
       }
       * {
         margin: 0%;
@@ -53,7 +53,7 @@ if (isset($_SESSION['email'])) {
         position: absolute;
         left: 0%;
         flex-direction: column;
-        margin-top: 21%;
+        margin-top: 28%;
         height: 12%;
         width: 100%;
         border-radius: 10px;
@@ -63,7 +63,7 @@ if (isset($_SESSION['email'])) {
         display: flex;
         position: absolute;
         flex-direction: column;
-        margin-top: 10%;
+        margin-top: 14%;
         font-size: 25px;
         font-weight: bold;
         left: 0%;
@@ -73,7 +73,7 @@ if (isset($_SESSION['email'])) {
         display: flex;
         position: absolute;
         flex-direction: column;
-        margin-top: 44%;
+        margin-top: 50%;
         left: 0%;
         font-size: 25px;
         font-weight: bold;
@@ -83,7 +83,7 @@ if (isset($_SESSION['email'])) {
         position: absolute;
         flex-direction: column;
         left: 1%;
-        margin-top: 55%;
+        margin-top: 65%;
       }
       .submit{
         display: flex;
@@ -91,7 +91,7 @@ if (isset($_SESSION['email'])) {
         flex-direction: column;
         background-color: black;
         color: white;
-        margin-top: 65%;
+        margin-top: 90%;
         font-size: 18px;
         font-weight: bold;
         align-items: center;
@@ -102,11 +102,32 @@ if (isset($_SESSION['email'])) {
         border-radius: 10px;
 
       }
+      .imagehome {
+                height: 30px;
+                width: auto;
+                margin-right: 0px;
+                display: flex;
+                position: absolute;
+                margin-top: 3%;
+                margin-left: 3%;
+                background-color: transparent;
+            }
+
+            .imagehome:hover {
+
+                height: 6%;
+                border-radius: 10px;
+            }
+
+            .imagehome a:hover img {
+                transform: scale(1.4);
+            }
     </style>
 
   </head>
 
   <body>
+    <a href="main.php"><img src="mainpng\home.png" class="imagehome"></a>
 
     <form class="container" action="Postimagel.php" method="post" autocomplete="off" enctype="multipart/form-data">
       <div class="container2">

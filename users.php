@@ -48,10 +48,10 @@
           
           <div class="details">
             <span><?php echo $row['Username'];?></span>
-            <!-- <p><?php echo $row['Email']; ?></p> -->
+            
           </div>
         </div>
-        <a href="destroysession.php" class="logout">Logout</a>
+        <a href="main.php" class="logout">Home Page</a>
       </header>
       <div class="search">
         <span class="text">Select an user to start chat</span>
