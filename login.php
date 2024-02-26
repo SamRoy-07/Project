@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 
@@ -352,7 +352,7 @@ session_start();
       height: 100%;
       margin-right: 10%;
       position: relative;
-      
+
       z-index: 1;
       border-top: 4px solid #4D4454;
       border-right: 4px solid #4D4454;
@@ -360,7 +360,7 @@ session_start();
       border-top-right-radius: 6px;
       transform: skew(30deg);
       box-shadow: inset -3px 3px 0px 0px #F7B563;
-      
+
       background: #f6d484;
     }
 
@@ -857,8 +857,6 @@ session_start();
       line-height: 1.5;
 
     }
-
-   
   </style>
   </script>
 </head>
@@ -869,36 +867,57 @@ session_start();
 
 
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  <?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
 
 
-$con = mysqli_connect('localhost', 'root', '') or die('not connected');
-mysqli_select_db($con, 'project') or die('not selected');
-$query = "SELECT uniqueid FROM sample WHERE email='$email'";
+    $con = mysqli_connect('localhost', 'root', '') or die('not connected');
+    mysqli_select_db($con, 'project') or die('not selected');
+    $query = "SELECT uniqueid FROM sample WHERE email='$email'";
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_assoc($result);
+    $uniqueid = $row['uniqueid'];
+
+    //admin login
+    if ($email == 'samantonyroy@gmail.com' && $password = 'sam') {
+      
+      echo "<script>
+     document.addEventListener('DOMContentLoaded', function() {
+       var secondsBeforeRedirect = 2;
+       function redirect() {
+         window.location.href = '../project/admin/admin.php';
+       }
+       setTimeout(redirect, secondsBeforeRedirect * 1000);
+     });
+   </script>";
+   echo '<div class="motto">
+     <div class="mottosize">
+     Hey Sam 
+     </div>
+     </div>';
+     $_SESSION['email'] = $email;
+
+    } else {
+
+
+
+      $query = "select * from sample where Email='$email' and Password='$password'";
       $result = mysqli_query($con, $query);
-      $row = mysqli_fetch_assoc($result);
-      $uniqueid = $row['uniqueid'];
+      $count = mysqli_num_rows($result);
 
 
 
-$query = "select * from sample where Email='$email' and Password='$password'";
-$result = mysqli_query($con, $query);
-$count = mysqli_num_rows($result);
+      if ($count > 0) {
+        $_SESSION['email'] = $email;
+        $_SESSION['uniqueid'] = $uniqueid;
 
 
 
-if ($count > 0) {
-  $_SESSION['email']=$email;
-  $_SESSION['uniqueid']=$uniqueid;
-  
-
-
-    echo "<div class='scene'>
+        echo "<div class='scene'>
        <div class='forest'>
          <div class='tree tree1'>
            <div class='branch branch-top'></div>
@@ -1010,13 +1029,13 @@ if ($count > 0) {
        </div>
      </div>";
 
-     echo '<div class="motto">
+        echo '<div class="motto">
      <div class="mottosize">
      Unite Strong, Unleash Brilliance, Triumph
      </div>
      </div>';
 
-    echo "<script>
+        echo "<script>
      document.addEventListener('DOMContentLoaded', function() {
        var secondsBeforeRedirect = 2;
        function redirect() {
@@ -1025,14 +1044,14 @@ if ($count > 0) {
        setTimeout(redirect, secondsBeforeRedirect * 1000);
      });
    </script>";
-} else {
-    
-    echo '<div class="motto">
+      } else {
+
+        echo '<div class="motto">
         <div class="mottosize">
         Login was not successful
         </div>
         </div>';
-    echo "<script>
+        echo "<script>
      document.addEventListener('DOMContentLoaded', function() {
        var secondsBeforeRedirect = 5;
        function redirect() {
@@ -1041,10 +1060,11 @@ if ($count > 0) {
        setTimeout(redirect, secondsBeforeRedirect * 1000);
      });
    </script>";
-}
-mysqli_close($con);
-}
-?>
+      }
+    }
+    mysqli_close($con);
+  }
+  ?>
 </body>
-</html>
 
+</html>

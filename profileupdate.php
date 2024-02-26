@@ -164,14 +164,15 @@ if (isset($_SESSION["email"]) ) {
 
         .Refurbish {
             display: flex;
-            flex-direction: column;
-            background-color: #e88b10;
-            color: #a4d3d8;
+            
+            background-color: black;
+           margin-top: 49.5%;
             justify-content: center;
             align-items: center;
-            width: 20%;
-            position: relative;
-            left: 40%;
+            width: 10%;
+            border-radius: 10px;
+            position: absolute;
+            left: 45%;
             
         }
 
@@ -228,13 +229,13 @@ if (isset($_SESSION["email"]) ) {
             <input type="text" name="bio" class="input" placeholder="Bio Data">
 
         </div>
-
-        </div>
         <button class="button-submit">Update</button>
         <div class="Refurbish">
-
             <a href="profilef.php"> Refurbish</a>
         </div>
+
+        </div>
+        
     </form>
 
 

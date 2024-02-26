@@ -143,7 +143,7 @@ if (isset($_SESSION["email"]) ) {
             width: 100%;
             height: auto; 
             border-radius: 10px; 
-            ;
+            
         }
 
         body {

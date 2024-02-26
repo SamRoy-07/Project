@@ -1,54 +1,93 @@
 <?php
-// Assuming you have defined the necessary functions and classes
+// Include your database connection file
+include 'db_connection.php';
 
-// Check if the followUser action is triggered
-if (!empty($_POST['action']) && $_POST['action'] == 'followUser') {
-    $user->followUserId = $_POST["userId"];	
-    $user->followUser();
+// Check if the user is logged in and authenticated
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    // Redirect the user to the login page or show an error message
+    header("Location: login.php");
+    exit();
+}
+
+// Get the user ID of the user performing the follow action
+$follower_id = $_SESSION['user_id'];
+
+// Get the user ID of the user to be followed (You might get this value from a form or URL parameter)
+$followed_id = $_POST['followed_id']; // Assuming it comes from a form submission
+
+// Check if the follow action is valid (e.g., not following oneself)
+if ($follower_id == $followed_id) {
+    // Redirect the user or show an error message
+    header("Location: profile.php?error=self_follow");
+    exit();
+}
+
+// Check if the follow relationship already exists
+$sql_check_follow = "SELECT * FROM follows WHERE follower_id = $follower_id AND followed_id = $followed_id";
+$result_check_follow = mysqli_query($connection, $sql_check_follow);
+if (mysqli_num_rows($result_check_follow) > 0) {
+    // Redirect the user or show an error message
+    header("Location: profile.php?error=already_following");
+    exit();
+}
+
+// Insert the follow relationship into the database
+$sql_follow = "INSERT INTO follows (follower_id, followed_id) VALUES ($follower_id, $followed_id)";
+if (mysqli_query($connection, $sql_follow)) {
+    // Redirect the user or show a success message
+    header("Location: profile.php?success=followed");
+    exit();
+} else {
+    // Redirect the user or show an error message
+    header("Location: profile.php?error=database_error");
+    exit();
 }
 ?>
+<!-- unfollow action -->
+<?php
+// Include your database connection file
+include 'db_connection.php';
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Follow Users</title>
-    <!-- Include jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
+// Check if the user is logged in and authenticated
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    // Redirect the user to the login page or show an error message
+    header("Location: login.php");
+    exit();
+}
 
-<div class="card-body">
-    <?php 
-    $unfollowedUserResult = $user->getFollower();
-    while ($unfollowedUser = $unfollowedUserResult->fetch_assoc()) { 	
-    ?>					
-    <li class="list-group-item" style="padding:5px;">					
-        <a href="#"><img src="images/<?php echo $unfollowedUser['profile_image']; ?>" width="50"/>@<?php echo $unfollowedUser['username']; ?></a> 
-        <button type="button" id="follow_<?php echo $unfollowedUser['user_id']; ?>" data-userid="<?php echo $unfollowedUser['user_id']; ?>" class="btn btn-primary pull-right follow" style="margin:5px 5px 0px 0px;">Follow</button>
-    </li>					
-    <?php } ?>					
-</div>
+// Get the user ID of the user performing the unfollow action
+$follower_id = $_SESSION['user_id'];
 
-<script>
-$(document).on('click', '.follow', function(){
-    var userId = $(this).data("userid");		
-    var action = 'followUser';
-    $.ajax({
-        url:'<?php echo $_SERVER["PHP_SELF"]; ?>',
-        method:"POST",
-        data:{userId:userId, action:action},
-        dataType:"json",
-        success:function(response){				
-            if(response.success == 1) {
-                $("#follow_"+userId).text("Following");
-                $("#following").text(parseInt($("#following").text()) + 1);
-            }					
-        }
-    });
-});
-</script>
+// Get the user ID of the user to be unfollowed (You might get this value from a form or URL parameter)
+$unfollowed_id = $_POST['unfollowed_id']; // Assuming it comes from a form submission
 
-</body>
-</html>
+// Check if the unfollow action is valid (e.g., not unfollowing oneself)
+if ($follower_id == $unfollowed_id) {
+    // Redirect the user or show an error message
+    header("Location: profile.php?error=self_unfollow");
+    exit();
+}
+
+// Check if the follow relationship exists
+$sql_check_follow = "SELECT * FROM follows WHERE follower_id = $follower_id AND followed_id = $unfollowed_id";
+$result_check_follow = mysqli_query($connection, $sql_check_follow);
+if (mysqli_num_rows($result_check_follow) == 0) {
+    // Redirect the user or show an error message
+    header("Location: profile.php?error=not_following");
+    exit();
+}
+
+// Delete the follow relationship from the database
+$sql_unfollow = "DELETE FROM follows WHERE follower_id = $follower_id AND followed_id = $unfollowed_id";
+if (mysqli_query($connection, $sql_unfollow)) {
+    // Redirect the user or show a success message
+    header("Location: profile.php?success=unfollowed");
+    exit();
+} else {
+    // Redirect the user or show an error message
+    header("Location: profile.php?error=database_error");
+    exit();
+}
+?>
