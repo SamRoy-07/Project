@@ -883,7 +883,7 @@ session_start();
     $uniqueid = $row['uniqueid'];
 
     //admin login
-    if ($email == 'samantonyroy@gmail.com' && $password = 'sam') {
+    if ($email == 'samantonyroy@gmail.com' && $password == 'sam') {
       
       echo "<script>
      document.addEventListener('DOMContentLoaded', function() {

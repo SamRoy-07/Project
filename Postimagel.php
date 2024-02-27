@@ -9,6 +9,7 @@ if(isset($_SESSION['email']))
 $con = mysqli_connect('localhost', 'root', '') or die('not connected');
 mysqli_select_db($con, 'project') or die('not selected');
 if(isset($_POST["submit"])){
+  $email=$_SESSION['email'];
   $Description = $_POST["Description"];
   $query = "SELECT userid FROM sample WHERE email='$email'";
     $result = mysqli_query($con, $query);
@@ -16,8 +17,19 @@ if(isset($_POST["submit"])){
     $userid = $row['userid'];
   if($_FILES["image"]["error"] == 4){
     echo
-    "<script> alert('Image Does Not Exist'); </script>"
+    "<script> alert('Image Does Not Exist'); 
+    document.addEventListener('DOMContentLoaded', function () {
+      var secondsBeforeRedirect = 1; 
+
+      function redirect() {
+        window.location.href = 'Postimagef.php'; 
+      }
+
+      setTimeout(redirect, secondsBeforeRedirect * 1000); 
+    });
+  </script>"
     ;
+    
   }
   else{
     $fileName = $_FILES["image"]["name"];
@@ -32,6 +44,15 @@ if(isset($_POST["submit"])){
       "
       <script>
         alert('Invalid Image Extension');
+        document.addEventListener('DOMContentLoaded', function () {
+          var secondsBeforeRedirect = 1; 
+    
+          function redirect() {
+            window.location.href = 'Postimagef.php'; 
+          }
+    
+          setTimeout(redirect, secondsBeforeRedirect * 1000); 
+        });
       </script>
       ";
     }
@@ -40,6 +61,16 @@ if(isset($_POST["submit"])){
       "
       <script>
         alert('Image Size Is Too Large');
+        document.addEventListener('DOMContentLoaded', function () {
+          var secondsBeforeRedirect = 1; 
+    
+          function redirect() {
+            window.location.href = 'Postimagef.php'; 
+          }
+    
+          setTimeout(redirect, secondsBeforeRedirect * 1000); 
+        });
+      </script>
       </script>
       ";
     }
