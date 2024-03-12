@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
+if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"]) && isset($_SESSION["userid"])) {
 
     ?>
     <html>
@@ -42,7 +42,7 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
                 align-items: center;
                 margin-top: 2%;
                 margin-bottom: auto;
-                margin-left: 10%;
+                margin-left: 8%;
                 margin-right: auto;
                 border-radius: 30px;
 
@@ -81,7 +81,7 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
 
             .rightnav {
                 position: absolute;
-                right: 10%;
+                right: 8%;
                 justify-content: center;
                 align-items: center;
             }
@@ -122,13 +122,13 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
 
 
             .imagesearch {
-                height: 30px;
-                width: auto;
-                margin-right: 0px;
+                height: 80px;
+                width: 80px;
+
                 display: flex;
                 position: absolute;
-                top: 16px;
-                right: 3%;
+                top: 0px;
+                right: 55%;
             }
 
             .imagereport {
@@ -138,7 +138,7 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
                 display: flex;
                 position: absolute;
                 top: 16px;
-                right: -8%;
+                right: 0%;
             }
 
             .logout {
@@ -148,7 +148,7 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
                 height: 70%;
                 width: 8%;
                 background-color: #ffe4e1;
-                right: -20%;
+                margin-left: 5%;
                 top: 13%;
                 justify-content: center;
                 align-items: center;
@@ -285,28 +285,85 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
             }
 
 
-            .feedarea {
-
-                position: absolute;
-                top: 24%;
-                left: 28%;
-                bottom: 0;
-                width: auto;
-                max-width: 60%;
-                height: auto;
-                max-height: 60%;
-
-
-                background-color: white;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-                display: flex;
-                flex-direction: column;
-                padding: 20px;
-                overflow-y: auto;
+            .container {
+                height: 75%;
+                max-width: 70%;
+                margin: 0 auto;
+                margin-top: 8%;
+                margin-left: 27%;
+                background-color: #fff;
                 border-radius: 10px;
-
-
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
             }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                padding: 15px;
+                text-align: left;
+                vertical-align: top;
+            }
+
+            th {
+                background-color: #333;
+                color: #fff;
+                font-weight: bold;
+                border-bottom: 2px solid #fff;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            tr:hover {
+                background-color: #e0e0e0;
+            }
+
+            img {
+                max-width: 70%;
+                height: 50%;
+                border-radius: 8px;
+                display: block;
+                margin: 30px auto 20px;
+                
+            }
+
+            .post-description {
+                padding: 15px;
+                font-size: 16px;
+                line-height: 1.6;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .post-description h3 {
+                color: #333;
+                font-size: 24px;
+                margin: 0 0 15px;
+            }
+
+            .post-description p {
+                margin: 0 0 10px;
+            }
+
+            td.image-container {
+                margin-bottom: 20px;
+                /* Add bottom margin to create gap */
+            }
+
+            td:hover {
+                cursor: pointer;
+            }
+
+            td:hover img {
+                transform: scale(1.05);
+                transition: transform 0.2s ease-in-out;
+            }
+
 
 
             .feed {
@@ -326,6 +383,80 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
                 position: absolute;
 
             }
+
+            /* Your existing CSS styles here */
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                /* Semi-transparent black */
+                z-index: 1000;
+                /* Higher z-index to ensure it covers other elements */
+            }
+
+            /* .searchconatiner {
+                                        display: flex;
+                                        flex-direction: column;
+                                        position: absolute;
+                                        background-color: red;
+                                    } */
+
+            .search-container {
+                display: none;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 39%;
+                height: auto;
+                text-align: center;
+                border-radius: 10px;
+
+                z-index: 1001;
+
+
+            }
+
+            #search-input {
+                padding: 13px 20px;
+                border-radius: 10px;
+
+            }
+
+            #search-button {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                background: #fbca1f;
+                font-family: inherit;
+                padding: 0.6em 1.3em;
+                font-weight: 900;
+                font-size: 18px;
+                border: 3px solid black;
+                border-radius: 0.4em;
+                box-shadow: 0.1em 0.1em;
+                cursor: pointer;
+                top: 0%;
+                margin-left: 78%;
+                justify-content: flex-end;
+            }
+
+            .search-results {}
+
+
+            #search-button:hover {
+                transform: translate(-0.05em, -0.05em);
+                box-shadow: 0.15em 0.15em;
+            }
+
+            #search-button:active {
+                transform: translate(0.05em, 0.05em);
+                box-shadow: 0.05em 0.05em;
+            }
         </style>
     </head>
 
@@ -338,10 +469,39 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
                         <img src="logo.jpg">
                     </a>
                 </div>
+
+
+
+
+
+                <img src="mainpng\search.png" class="imagesearch" id="search-icon" onclick="toggleSearch()">
+
+
+
+                <div class="overlay" id="overlay" onclick="toggleSearch()">
+                </div>
+                <div class="searchcontainer">
+                    <div class="search-container" id="search-container">
+                        <form onsubmit="event.preventDefault(); performSearch()">
+                            <input type="text" id="search-input" placeholder="Type here to search" required>
+                            <button id="search-button" type="submit">Search</button>
+                        </form>
+                        <div id="search-results" class="search-results"></div>
+                    </div>
+                </div>
+
+
+
+                <!-- Your existing HTML code here -->
+
+                <script src="search\searchscript.js"></script>
+
                 <div id="rightnav" class="rightnav">
+
                     <ul>
+
                         <li>
-                            <a href="profile.php">
+                            <a href="profile\profile.php">
                                 <p>Profile</p>
                             </a>
                         </li>
@@ -357,15 +517,10 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
                             </a>
                         </li>
                         <li>
-                            <a href="Postimagef.php">
+                            <a href="postimage\Postimagef.php">
                                 <p>Posts</p>
                             </a>
                         </li>
-
-                        <a href="#">
-                            <img src="mainpng\search.png" class="imagesearch">
-                        </a>
-
 
                         <a href="reportf.php">
                             <p><img src="mainpng\reportuser.png" class="imagereport"></p>
@@ -427,18 +582,46 @@ if (isset($_SESSION["email"]) && isset($_SESSION["uniqueid"])) {
             </div>
 
 
-            <div class="feedarea">
-                blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-                <br>
+            <div class="container">
 
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $con = mysqli_connect('localhost', 'root', '') or die('not connected');
+                        mysqli_select_db($con, 'project') or die('not selected');
+                        $userid = $_SESSION['userid'];
 
+                        $rows = mysqli_query($con, "SELECT * FROM post WHERE NOT userid='$userid' ORDER BY time DESC");
+                        foreach ($rows as $row): ?>
+                            <tr>
+                                <td class="image-container"><img src="postimage/img/<?php echo $row["image"]; ?>"
+                                        alt="<?php echo $row["image"]; ?>"></td>
+                            </tr>
+                            <tr>
+                                <td class="post-description">
+                                    <h3>Description</h3>
+                                    <p>
+                                        <?php echo $row["Description"]; ?>
+                                    </p>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
-            <div class="feed">
-                Feed
-            </div>
+
+            
+        </div>
+       
 
         </div>
-        </div>
+
+
 
     </body>
 

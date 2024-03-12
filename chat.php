@@ -31,7 +31,7 @@
         <!-- Chat box content goes here -->
       </div>
       <form action="#" class="typing-area">
-        <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $userid; ?>" hidden> <!-- Used $uniqueid instead of $userid -->
+        <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $userid; ?>" hidden> 
         <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
         <button><i class="fab fa-telegram-plane"></i></button>
       </form>
@@ -46,6 +46,6 @@
 <?php
   } else {
     header("location: login.html");
-    exit(); // Added an exit after redirecting
+    exit(); 
   }
 ?>

@@ -153,6 +153,9 @@
   $sql3="INSERT INTO `report`(`userid`) VALUES ('$userid')";
   mysqli_query($con, $sql3) or die('Could not insert data into database');
 
+  $sql4="INSERT INTO `profileimg`(`userid`) VALUES ('$userid')";
+  mysqli_query($con, $sql4) or die('Could not insert data into database');
+
  echo"<div class='container2'>";
   echo '<div class="motto">
   <div class="mottosize">

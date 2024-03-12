@@ -877,10 +877,11 @@ session_start();
 
     $con = mysqli_connect('localhost', 'root', '') or die('not connected');
     mysqli_select_db($con, 'project') or die('not selected');
-    $query = "SELECT uniqueid FROM sample WHERE email='$email'";
+    $query = "SELECT * FROM sample WHERE email='$email'";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_assoc($result);
     $uniqueid = $row['uniqueid'];
+    $userid=$row['userid'];
 
     //admin login
     if ($email == 'samantonyroy@gmail.com' && $password == 'sam') {
@@ -914,6 +915,7 @@ session_start();
       if ($count > 0) {
         $_SESSION['email'] = $email;
         $_SESSION['uniqueid'] = $uniqueid;
+        $_SESSION['userid']=$userid;
 
 
 
